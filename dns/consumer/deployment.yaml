@@ -21,6 +21,25 @@ spec:
     metadata:
       labels:
         k8s-app: polaris-dns-consumer
+        env: dev
+      annotations:
+        polarismesh.cn/sidecarConfig: |
+          {
+            "recurse": {
+              "enabled": true,
+              "timeout": 5
+            },
+            "dns": {
+              "suffix": ".dns-test",
+              "ttl": 3
+            },
+            "location": {
+              "region": "region-1",
+              "zone": "zone-1",
+              "campus": "campus-1",
+              "match_level": "campus"
+            }
+          }
     spec:
       containers:
         - name: polaris-dns-consumer
